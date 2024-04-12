@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard STBK</title>
+    <link rel="stylesheet" href="Aset/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Aset/main.css" />
+  </head>
+  <body>
+    <!-- navbar start -->
+    <section>
+      <nav class="navbar navbar-dark main-bg shadow p-3">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="/Absensi STBK/Aset/img/logo.jpg" alt="logo stt" width="50" height="50" class="d-inline-block align-text-center rounded-circle img-thumbnail" />
+            Bhakti <span>Karya</span>
+          </a>
+        </div>
+      </nav>
+    </section>
+    <!-- navbar end -->
+    <!-- form start -->
+    <section class="d-flex justify-content-center">
+      <div class="alert alert-primary alert-dismissible fade show my-alert d-none mt-4" role="alert">
+        <strong>Done!</strong> Lanjut input wii!.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <form name="absensistbk">
+        <div class="mb-4 mt-4">
+          <label for="name" class="form-label">Nama Lengkap</label>
+          <input type="name" class="form-control" id="name" aria-describedby="nameHelp" name="nama" />
+        </div>
+        <select id="Kelompok" class="form-select" aria-label="Default select example" name="kelompok">
+          <option selected>Pilih Kelompok</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        </div>
+          <label for="denda" class="form-label mt-4">Denda Kehadiran</label>
+          <input type="denda" class="form-control" id="denda" aria-describedby="denda" name="denda">
+        <div id="denda" class="form-text">Ketik angkanya saja.</div>
+      </div>
+        <button type="submit" class="btn btn-primary btn-kirim mt-4">Submit</button>
+        <button class="btn btn-primary btn-loading mt-4 d-none" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span role="status">Loading...</span>
+        </button>
+     </form>
+    </section>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxTp1rLI814ToPf8sFAYzKlwlYAUGDjN2LFVKR5Tao3cU_YKOkAG8a-oEhQG8az_UsM/exec'
+      const form = document.forms['absensistbk']
+      const btnKirim = document.querySelector('.btn-kirim');
+      const btnLoading = document.querySelector('.btn-loading');
+      const myAlert = document.querySelector('.my-alert');
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        //ketika tombol submit di klik
+        //tampilkan tombol loading, hilangkan tombol kirim
+        btnLoading.classList.toggle('d-none');
+        btnKirim.classList.toggle('d-none');
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            //tampilkan tombol kirim, hilangkan tombol loading
+            btnLoading.classList.toggle('d-none');
+            btnKirim.classList.toggle('d-none');
+            //tampilkan alert
+            myAlert.classList.toggle('d-none');
+            //reset form
+            form.reset();
+            console.log('Success!', response);
+          })
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
+  </body>
+  <!-- form end -->
+</html>
+         
+          
+      
+   

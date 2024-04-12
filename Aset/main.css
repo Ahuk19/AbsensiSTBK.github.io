@@ -1,0 +1,20 @@
+body {
+  background: whitesmoke;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.main-bg {
+  background-color: #344e41;
+}
+
+.form-main {
+  padding: 20%;
+}
+
+.navbar .navbar-brand .span {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: gold;
+}
